@@ -33,6 +33,11 @@ public class Functions {
         System.out.println("... Funckija masyvo elementų sumos skaičiavimui");
         int suma = sumOfArr(numArr);
         System.out.println("Masyvo elementų suma yra lygi: " + suma);
+
+        // Kviečiama funkcija masyvo elementų rikiavimui
+        System.out.println("... Funkcija masyvo elementų rikiavimui");
+        int[] sortedArr = sortArr(numArr);
+        System.out.println("Masyvas po rikiavimo: " + Arrays.toString(sortedArr));
     }
 
     // Didžiausio elemento masyve radimo funkcija
@@ -60,9 +65,28 @@ public class Functions {
     // Masyve esančių elementų sumos funkcija
     public static int sumOfArr(int[] array) {
         int sumArr = 0;
-        for (int i = 0; i < array.length; i++) {
-            sumArr += array[i];
+        for (int i : array) {
+            sumArr += i;
         }
         return sumArr;
+    }
+
+    // Masyve esančių elementų rikiavimo nuo mažiausio iki didžiausio funkcija
+    public static int[] sortArr(int[] array) {
+        System.out.println("Prieš rikiavimą: " + Arrays.toString(array));
+        int minIdx = 0;
+        for (int i = 0; i < array.length; i++) {
+            minIdx = i;
+            for (int j = i + 1; j < array.length; j++) {
+                if (array[j] < array[minIdx]) {
+                    minIdx = j;
+                }
+            }
+            System.out.println("--> Skaicius " + array[minIdx] + " perkeltas iš " + minIdx + " pozicijos masyve į " + i + " poziciją.");
+            int temp = array[minIdx];
+            array[minIdx] = array[i];
+            array[i] = temp;
+        }
+        return array;
     }
 }
